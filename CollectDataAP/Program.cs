@@ -40,7 +40,7 @@ namespace CollectDataAP
         static public void Tommy_Start()
         {
             Console.WriteLine("------------------------------------------------------------");
-            Console.WriteLine("|   ========     =====     |\\   /|    |\\   /|    \\\\    //  |");
+            Console.WriteLine("|   ========     =====     ||   ||    ||   ||    \\\\    //  |");
             Console.WriteLine("|      ||       //   \\\\    |\\   /|    |\\   /|     \\\\  //   |");
             Console.WriteLine("|      ||       ||   ||    | \\ / |    | \\ / |      \\\\//    |");
             Console.WriteLine("|      ||       \\\\   //    |  |  |    |  |  |       ||     |");
