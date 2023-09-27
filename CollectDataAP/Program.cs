@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.AppService;
 using Windows.Foundation.Collections;
@@ -16,6 +17,10 @@ namespace CollectDataAP
             Tommy_Start();
 
             DeviceState deviceState = new DeviceState();
+            Connect2UWP connect2UWP = new Connect2UWP();
+
+            connect2UWP.InitializeAppServiceConnection();
+
             uint deviceStateData = 0;
             string choice = "";
 
@@ -60,8 +65,8 @@ namespace CollectDataAP
             connection = new AppServiceConnection();
             connection.AppServiceName = "SampleInteropService";
             connection.PackageFamilyName = Package.Current.Id.FamilyName;
-            //connection.RequestReceived += Connection_RequestReceived;
-            //connection.ServiceClosed += Connection_ServiceClosed;
+            connection.RequestReceived += Connection_RequestReceived;
+            connection.ServiceClosed += Connection_ServiceClosed;
 
             AppServiceConnectionStatus status = await connection.OpenAsync();
             if (status != AppServiceConnectionStatus.Success)
@@ -83,6 +88,38 @@ namespace CollectDataAP
             //double result = (double)response.Message["RESULT"];
         }
 
+        /// <summary>
+        /// Handles the event when the desktop process receives a request from the UWP app
+        /// </summary>
+        private async void Connection_RequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
+        {
+            // retrive the reg key name from the ValueSet in the request
+            string key = args.Request.Message["deviceConfig"] as string;
+            if (key == "wifi")
+            {
+                // compose the response as ValueSet
+                ValueSet response = new ValueSet();
+                response.Add("res_wifi", "enable");
+
+                // send the response back to the UWP
+                await args.Request.SendResponseAsync(response);
+            }
+            else
+            {
+                ValueSet response = new ValueSet();
+                //response.Add("ERROR", "INVALID REQUEST");
+                await args.Request.SendResponseAsync(response);
+            }
+        }
+
+        /// <summary>
+        /// Handles the event when the app service connection is closed
+        /// </summary>
+        private void Connection_ServiceClosed(AppServiceConnection sender, AppServiceClosedEventArgs args)
+        {
+            Console.WriteLine("UWP Disconnect! Please restart APP!");
+        }
+        
 
     }
 }

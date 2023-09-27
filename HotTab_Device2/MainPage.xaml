@@ -9,6 +9,18 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Button x:Name="btn_wifi" Content="Wifi" Margin="976,153,0,0" VerticalAlignment="Top" Click="btn_wifi_Click"/>
+        <Button x:Name="btn_gobi3G" Content="Gobi3G" Margin="976,193,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_GPS" Content="GPS" Margin="976,233,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_bluetooth" Content="Bluetooth" Margin="976,273,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_webCamRear" Content="WebCam Rear" Margin="976,313,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_allLED" Content="AllLED" Margin="976,353,0,0" VerticalAlignment="Top"/>
 
+        <Button x:Name="btn_barcode" Content="Barcode" Margin="1096,153,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_webCamFront" Content="WebCam Front" Margin="1096,193,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_RFID" Content="RFID" Margin="1096,233,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_GPSAntenna" Content="GPS Antenna" Margin="1096,273,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_expandUSB" Content="Expand USB" Margin="1096,313,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_expandCOM" Content="Expand COM" Margin="1096,353,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
