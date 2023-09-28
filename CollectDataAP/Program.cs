@@ -26,18 +26,22 @@ namespace CollectDataAP
 
             Console.WriteLine("Choose the number you want:\n[1] Get device state\n[2] Set device state\n[0] Exit");
             while ((choice = Console.ReadLine()) != "0") 
-            { 
+            {
                 if(choice=="1")
                 {
-                    deviceStateData = deviceState.GetDeviceState();
+                    deviceStateData = deviceState.GetDeviceStatePower();
                     Console.WriteLine("Device state code: " + deviceStateData.ToString());
                 }
                 else if(choice == "2")
                 {
                     string temp = Console.ReadLine();
 
-                    deviceState.SetDeviceState((uint)Convert.ToInt32(temp));
+                    deviceState.SetDeviceStatePower((uint)Convert.ToInt32(temp));
                     Console.WriteLine("OK");
+                }
+                else if (choice == "3")
+                {
+                    Console.WriteLine(deviceState.ParseDeviceStatePowerCode());
                 }
             }
         }
@@ -56,70 +60,5 @@ namespace CollectDataAP
         }
     }
 
-    class Connect2UWP
-    {
-        private AppServiceConnection connection = null;
-
-        public async void InitializeAppServiceConnection()
-        {
-            connection = new AppServiceConnection();
-            connection.AppServiceName = "SampleInteropService";
-            connection.PackageFamilyName = Package.Current.Id.FamilyName;
-            connection.RequestReceived += Connection_RequestReceived;
-            connection.ServiceClosed += Connection_ServiceClosed;
-
-            AppServiceConnectionStatus status = await connection.OpenAsync();
-            if (status != AppServiceConnectionStatus.Success)
-            {
-                // something went wrong ...
-                Console.WriteLine(status.ToString());
-                Console.ReadLine();
-                //this.IsEnabled = false;
-            }
-        }
-
-        public async void SendData2UWP(string data)
-        {
-            // ask the UWP to calculate d1 + d2
-            ValueSet request = new ValueSet();
-            request.Add("D1", (string)data);
-            //request.Add("D2", (double)2);
-            AppServiceResponse response = await connection.SendMessageAsync(request);
-            //double result = (double)response.Message["RESULT"];
-        }
-
-        /// <summary>
-        /// Handles the event when the desktop process receives a request from the UWP app
-        /// </summary>
-        private async void Connection_RequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
-        {
-            // retrive the reg key name from the ValueSet in the request
-            string key = args.Request.Message["deviceConfig"] as string;
-            if (key == "wifi")
-            {
-                // compose the response as ValueSet
-                ValueSet response = new ValueSet();
-                response.Add("res_wifi", "enable");
-
-                // send the response back to the UWP
-                await args.Request.SendResponseAsync(response);
-            }
-            else
-            {
-                ValueSet response = new ValueSet();
-                //response.Add("ERROR", "INVALID REQUEST");
-                await args.Request.SendResponseAsync(response);
-            }
-        }
-
-        /// <summary>
-        /// Handles the event when the app service connection is closed
-        /// </summary>
-        private void Connection_ServiceClosed(AppServiceConnection sender, AppServiceClosedEventArgs args)
-        {
-            Console.WriteLine("UWP Disconnect! Please restart APP!");
-        }
-        
-
-    }
+    
 }

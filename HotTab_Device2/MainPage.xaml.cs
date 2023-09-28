@@ -86,7 +86,7 @@ namespace HotTab_Device2
             App.Connection.RequestReceived += AppServiceConnection_RequestReceived;
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                // enable UI to access  the connection
+                //enable UI to access the connection
                 //btnRegKey.IsEnabled = true;
             });
         }
@@ -118,7 +118,7 @@ namespace HotTab_Device2
             //tbResult.Text = "";
            // foreach (string key in response.Message.Keys)
            // {
-               btn_wifi.Content =  " Wifi " + response.Message["res_wifi"].ToString();
+               btn_wifi.Content =  "Wifi " + response.Message["res_wifi"].ToString();
            // }
         }
     }

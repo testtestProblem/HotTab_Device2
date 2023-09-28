@@ -6,21 +6,21 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="300" Height="300">
 
-    <Grid>
-        <Button x:Name="btn_wifi" Content="Wifi" Margin="976,153,0,0" VerticalAlignment="Top" Click="btn_wifi_Click"/>
-        <Button x:Name="btn_gobi3G" Content="Gobi3G" Margin="976,193,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_GPS" Content="GPS" Margin="976,233,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_bluetooth" Content="Bluetooth" Margin="976,273,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_webCamRear" Content="WebCam Rear" Margin="976,313,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_allLED" Content="AllLED" Margin="976,353,0,0" VerticalAlignment="Top"/>
+    <Grid FocusVisualPrimaryBrush="#FFD8D9EC"  >
+        <Button x:Name="btn_wifi" Content="Wifi" Margin="28,18,0,0" VerticalAlignment="Top" Click="btn_wifi_Click"  />
+        <Button x:Name="btn_gobi3G" Content="Gobi3G" Margin="28,58,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_GPS" Content="GPS" Margin="28,98,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_bluetooth" Content="Bluetooth" Margin="28,138,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_webCamRear" Content="WebCam Rear" Margin="28,178,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_allLED" Content="AllLED" Margin="28,218,0,0" VerticalAlignment="Top"/>
 
-        <Button x:Name="btn_barcode" Content="Barcode" Margin="1096,153,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_webCamFront" Content="WebCam Front" Margin="1096,193,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_RFID" Content="RFID" Margin="1096,233,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_GPSAntenna" Content="GPS Antenna" Margin="1096,273,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_expandUSB" Content="Expand USB" Margin="1096,313,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_expandCOM" Content="Expand COM" Margin="1096,353,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_barcode" Content="Barcode" Margin="148,18,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_webCamFront" Content="WebCam Front" Margin="148,58,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_RFID" Content="RFID" Margin="148,98,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_GPSAntenna" Content="GPS Antenna" Margin="148,138,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_expandUSB" Content="Expand USB" Margin="148,178,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_expandCOM" Content="Expand COM" Margin="148,218,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

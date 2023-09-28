@@ -21,8 +21,26 @@ namespace CollectDataAP
         [DllImport(@"WMIO2.dll")]
         public static extern bool GetDevice2(out byte uiValue);
 
+        private uint? deviceStatePower = null;
 
-        private enum deviceState { };
+        private enum DeviceStatePower : uint
+        {
+            Wifi = 0x01,
+            Gobi3G = 0x2,
+            GPS = 0x4,
+            Bluetooth = 0x8,
+            WebCamRear = 0x20,
+            AllLED = 0x80,
+
+            Barcode = 0x100,
+            WebCam = 0x200,
+            RFID = 0x400,
+            GPSAntenna = 0x800,
+            ExpandUSB = 0x1000,
+            ExpandCOM = 0x2000
+        };
+
+
 
         //0: The device power off     1: The device power on
         //lowwer byte
@@ -31,7 +49,7 @@ namespace CollectDataAP
         //upper byte
         //Bit7      Bit6        Bit5        Bit4        Bit3        Bit2    Bit1            Bit0
         //-         -           Expand COM  Expand USB  GPS Antenna RFID    WebCam Front    Barcode
-        public uint GetDeviceState()
+        public uint GetDeviceStatePower()
         {
             byte temp;
             uint devicestate = 0;
@@ -42,22 +60,35 @@ namespace CollectDataAP
             GetDevice2(out temp);
             devicestate += (((uint)temp) << 8);
 
+            deviceStatePower = devicestate;
+
             return devicestate;
         }
 
         //TODO...
-        public string ParseDeviceStateCode(uint data)
+        public string ParseDeviceStatePowerCode()
         {
-            string deviceState = "";
+            string s_temp = "";
 
-            if ((data & 0x0001) == 0x0001) deviceState += "";
+            deviceStatePower = 0xffff;
 
+            if (deviceStatePower == null) return "No any device data!\n";
+            else
+            {
+                foreach (uint i in Enum.GetValues(typeof(DeviceStatePower)))
+                {
+                    if((deviceStatePower & i) >= 1)
+                    {
+                        s_temp += (DeviceStatePower)i + "\n";
+                    }
+                }
+            }
 
-                return deviceState;
+            return s_temp;
         }
 
         //TODO: do more personalize
-        public bool SetDeviceState(uint data)
+        public bool SetDeviceStatePower(uint data)
         {
             byte data1 = (byte)data;
             byte data2 = (byte)(data>>8);
