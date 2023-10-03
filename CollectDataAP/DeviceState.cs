@@ -41,7 +41,6 @@ namespace CollectDataAP
         };
 
 
-
         //0: The device power off     1: The device power on
         //lowwer byte
         //Bit7      Bit6        Bit5        Bit4        Bit3        Bit2    Bit1            Bit0
@@ -65,12 +64,9 @@ namespace CollectDataAP
             return devicestate;
         }
 
-        //TODO...
         public string ParseDeviceStatePowerCode()
         {
             string s_temp = "";
-
-            deviceStatePower = 0xffff;
 
             if (deviceStatePower == null) return "No any device data!\n";
             else

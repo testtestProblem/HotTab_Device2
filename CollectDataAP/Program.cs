@@ -14,14 +14,13 @@ namespace CollectDataAP
     {
         static void Main(string[] args)
         {
-            Tommy_Start();
+            Tommy.Tommy_Start();
 
             DeviceState deviceState = new DeviceState();
             Connect2UWP connect2UWP = new Connect2UWP();
 
             connect2UWP.InitializeAppServiceConnection();
 
-            uint deviceStateData = 0;
             string choice = "";
 
             Console.WriteLine("Choose the number you want:\n[1] Get device state\n[2] Set device state\n[0] Exit");
@@ -29,8 +28,11 @@ namespace CollectDataAP
             {
                 if(choice=="1")
                 {
-                    deviceStateData = deviceState.GetDeviceStatePower();
-                    Console.WriteLine("Device state code: " + deviceStateData.ToString());
+                    uint deviceStateCode = deviceState.GetDeviceStatePower();
+                    Console.WriteLine("Device state code: " + deviceStateCode.ToString());
+                    Console.WriteLine(deviceState.ParseDeviceStatePowerCode());
+
+                    connect2UWP.SendData2UWP(deviceStateCode);
                 }
                 else if(choice == "2")
                 {
@@ -46,18 +48,7 @@ namespace CollectDataAP
             }
         }
 
-        static public void Tommy_Start()
-        {
-            Console.WriteLine("------------------------------------------------------------");
-            Console.WriteLine("|   ========     =====     ||   ||    ||   ||    \\\\    //  |");
-            Console.WriteLine("|      ||       //   \\\\    |\\   /|    |\\   /|     \\\\  //   |");
-            Console.WriteLine("|      ||       ||   ||    | \\ / |    | \\ / |      \\\\//    |");
-            Console.WriteLine("|      ||       \\\\   //    |  |  |    |  |  |       ||     |");
-            Console.WriteLine("|      ||        =====     |  |  |    |  |  |       ||     |");
-            Console.WriteLine("------------------------------------------------------------");
-            Console.WriteLine();
-            Console.WriteLine();
-        }
+        
     }
 
     

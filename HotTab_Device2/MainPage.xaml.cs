@@ -16,7 +16,9 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using static HotTab_Device2.DeviceState;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -30,6 +32,8 @@ namespace HotTab_Device2
         public MainPage()
         {
             this.InitializeComponent();
+
+
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -93,19 +97,66 @@ namespace HotTab_Device2
 
         private async void AppServiceConnection_RequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
         {
-            double d1 = (double)args.Request.Message["D1"];
-            double d2 = (double)args.Request.Message["D2"];
-            double result = d1 + d2;
+            //double d1 = (double)args.Request.Message["D1"];
+            //double d2 = (double)args.Request.Message["D2"];
+            //double result = d1 + d2;
+
+            //ValueSet response = new ValueSet();
+            //response.Add("RESULT", result);
+            //await args.Request.SendResponseAsync(response);
+
+            //// log the request in the UI for demo purposes
+            //await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            //{
+            //    //tbRequests.Text += string.Format("Request: {0} + {1} --> Response = {2}\r\n", d1, d2, result);
+            //});
+            uint deviceState = (uint)args.Request.Message["deviceStateAll"];
 
             ValueSet response = new ValueSet();
-            response.Add("RESULT", result);
+            response.Add("RESULT", "");
             await args.Request.SendResponseAsync(response);
 
-            // log the request in the UI for demo purposes
             await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                //tbRequests.Text += string.Format("Request: {0} + {1} --> Response = {2}\r\n", d1, d2, result);
+            {/*
+                if ((deviceState & (uint)Modules.Wifi) == (uint)Modules.Wifi)
+                {
+                    btn_wifi.Background = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_Wi-Fi.bmp", UriKind.RelativeOrAbsolute)),
+                        Stretch = Stretch.Uniform
+                    };
+                }
+                else if ((deviceState & (uint)Modules.Gobi3G) == (uint)Modules.Gobi3G)
+                {
+                    btn_gobi3G.Background = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_3G.bmp", UriKind.RelativeOrAbsolute)),
+                        Stretch = Stretch.Uniform
+                    };
+                }
+                else if ((deviceState & (uint)Modules.GPS) == (uint)Modules.GPS)
+                {
+                    btn_GPS.Background = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_GPS.bmp", UriKind.RelativeOrAbsolute)),
+                        Stretch = Stretch.Uniform
+                    };
+                }
+                else if ((deviceState & (uint)Modules.Bluetooth) == (uint)Modules.Bluetooth)
+                {
+                    btn_bluetooth.Background = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_blueTooth.bmp", UriKind.RelativeOrAbsolute)),
+                        Stretch = Stretch.Uniform
+                    };
+                }*/
             });
+
+            // else btn_wifi.Content = "Wifi " + "disable"; 
+
+            //ValueSet response = new ValueSet();
+            //response.Add("RESULT", "");
+            //await args.Request.SendResponseAsync(response);
         }
 
         private async void btn_wifi_Click(object sender, RoutedEventArgs e)
@@ -119,6 +170,8 @@ namespace HotTab_Device2
            // foreach (string key in response.Message.Keys)
            // {
                btn_wifi.Content =  "Wifi " + response.Message["res_wifi"].ToString();
+
+            btn_wifi.Background = null;
            // }
         }
     }

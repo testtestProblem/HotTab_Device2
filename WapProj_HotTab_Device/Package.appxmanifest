@@ -11,8 +11,8 @@
 
   <Identity
     Name="cddd2947-2eed-491f-999c-95f735dec1b4"
-    Publisher="CN=WE1914"
-    Version="1.0.0.0" />
+    Publisher="CN=Tommy_WE1914"
+    Version="1.0.6.0" />
 
   <Properties>
     <DisplayName>WapProj_HotTab_Device</DisplayName>

@@ -31,14 +31,14 @@ namespace CollectDataAP
             }
         }
 
-        public async void SendData2UWP(string data)
+        public async void SendData2UWP(uint data)
         {
             // ask the UWP to calculate d1 + d2
             ValueSet request = new ValueSet();
-            request.Add("D1", (string)data);
+            request.Add("deviceStateAll", (uint)data);
             //request.Add("D2", (double)2);
             AppServiceResponse response = await connection.SendMessageAsync(request);
-            //double result = (double)response.Message["RESULT"];
+            string result = (string)response.Message["RESULT"];
         }
 
         /// <summary>
