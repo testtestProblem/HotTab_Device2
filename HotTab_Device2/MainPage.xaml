@@ -9,52 +9,31 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="300" Height="300">
 
     <Grid   >
-        <Button x:Name="btn_wifi" Content="" Margin="28,18,0,0" VerticalAlignment="Top" Click="btn_wifi_Click" Width="45" Height="35" FocusVisualPrimaryBrush="Transparent" Foreground="Transparent" FocusVisualSecondaryBrush="Transparent" FocusVisualSecondaryThickness="0" >
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/device/Wi-Fi.bmp" Stretch="Uniform"/>
-            </Button.Background>
+        <Button x:Name="btn_wifi" Content="&#xec96;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="28,18,0,0"  VerticalAlignment="Top" Click="btn_wifi_Click" Width="45" Height="35" Foreground="#FFE8A006"  >
+
         </Button>
-        <Button x:Name="btn_gobi3G" Content="" Margin="28,58,0,0" VerticalAlignment="Top" Width="45" Height="35"    FocusVisualSecondaryBrush="{x:Null}">
-            <Button.Background>
-                <ImageBrush Stretch="Uniform" ImageSource="/Assets/device/_3G.png"/>
-            </Button.Background>
+        <Button x:Name="btn_gobi3G" Content="WWAN" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="28,58,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="8">
+
         </Button>
-        <Button x:Name="btn_GPS" Content="" Margin="28,98,0,0" VerticalAlignment="Top" Width="45" Height="35">
-            <Button.Background>
-                <ImageBrush Stretch="Uniform" ImageSource="/Assets/device/GPS.bmp"/>
-            </Button.Background>
+        <Button x:Name="btn_GPS" Content="&#x13b57;" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="28,98,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="20">
+
         </Button>
-        <Button x:Name="btn_bluetooth" Content="" Margin="28,138,0,0" VerticalAlignment="Top" Width="45" Height="35">
-            <Button.Background>
-                <ImageBrush Stretch="Uniform" ImageSource="/Assets/device/blueTooth1.bmp"/>
-            </Button.Background>
+        <Button x:Name="btn_bluetooth" Content="&#xec42;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="28,138,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="20">
+
         </Button>
-        <Button x:Name="btn_webCamRear" Content="" Margin="28,178,0,0" VerticalAlignment="Top" Width="45" Height="35">
-            <Button.Background>
-                <ImageBrush Stretch="Uniform" ImageSource="/Assets/device/Camera1.bmp"/>
-            </Button.Background>
+        <Button x:Name="btn_webCamRear" Content="&#xeecf;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="28,178,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="25">
         </Button>
-        <Button x:Name="btn_allLED" Content="" Margin="28,218,0,0" VerticalAlignment="Top" Width="45" Height="35">
-            <Button.Background>
-                <ImageBrush ImageSource="/Assets/device/wLCD.png" Stretch="Uniform"/>
-            </Button.Background>
+        <Button x:Name="btn_allLED" Content="&#xec59;" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="28,218,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="21">
         </Button>
 
-        <Button x:Name="btn_barcode" Content="" Margin="148,18,0,0" VerticalAlignment="Top" Width="45" Height="35">
-            <Button.Background>
-                <ImageBrush Stretch="Uniform" ImageSource="/Assets/device/BarCode Reader1.bmp"/>
-            </Button.Background>
+        <Button x:Name="btn_barcode" Content="&#xec85;" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="148,18,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="20">
         </Button>
         <Button x:Name="btn_webCamFront" Content="WebCam Front" Margin="148,58,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_RFID" Content="" Margin="148,98,0,0" VerticalAlignment="Top" Width="45" Height="35">
-            <Button.Background>
-                <ImageBrush Stretch="Uniform" ImageSource="/Assets/device/RFID.bmp"/>
-            </Button.Background>
+        <Button x:Name="btn_RFID" Content="&#x13b1c;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="148,98,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="25">
+            
         </Button>
-        <Button x:Name="btn_GPSAntenna" Content="" Margin="148,138,0,0" VerticalAlignment="Top" Width="45" Height="35">
-            <Button.Background>
-                <ImageBrush Stretch="Uniform" ImageSource="/Assets/device/wANT_GPS.png"/>
-            </Button.Background>
+        <Button x:Name="btn_GPSAntenna" Content="&#xea56;" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="148,138,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="21">
+            
         </Button>
         <Button x:Name="btn_expandUSB" Content="Expand USB" Margin="148,178,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_expandCOM" Content="Expand COM" Margin="148,218,0,0" VerticalAlignment="Top"/>

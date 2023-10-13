@@ -34,6 +34,7 @@ namespace HotTab_Device2
             this.InitializeComponent();
 
 
+
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -112,17 +113,17 @@ namespace HotTab_Device2
             //});
             uint deviceState = (uint)args.Request.Message["deviceStateAll"];
 
-            ValueSet response = new ValueSet();
-            response.Add("RESULT", "");
-            await args.Request.SendResponseAsync(response);
+            //ValueSet response = new ValueSet();
+            //response.Add("RESULT", "");
+            //await args.Request.SendResponseAsync(response);
 
             await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {/*
+            { 
                 if ((deviceState & (uint)Modules.Wifi) == (uint)Modules.Wifi)
                 {
                     btn_wifi.Background = new ImageBrush
                     {
-                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_Wi-Fi.bmp", UriKind.RelativeOrAbsolute)),
+                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_3G.bmp", UriKind.RelativeOrAbsolute)),
                         Stretch = Stretch.Uniform
                     };
                 }
@@ -149,7 +150,7 @@ namespace HotTab_Device2
                         ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_blueTooth.bmp", UriKind.RelativeOrAbsolute)),
                         Stretch = Stretch.Uniform
                     };
-                }*/
+                }
             });
 
             // else btn_wifi.Content = "Wifi " + "disable"; 
@@ -167,12 +168,23 @@ namespace HotTab_Device2
 
             // display the response key/value pairs
             //tbResult.Text = "";
-           // foreach (string key in response.Message.Keys)
-           // {
-               btn_wifi.Content =  "Wifi " + response.Message["res_wifi"].ToString();
+            // foreach (string key in response.Message.Keys)
+            // {
+              btn_wifi.Content =  "Wifi " + response.Message["res_wifi"].ToString();
 
-            btn_wifi.Background = null;
-           // }
+            Image img = new Image();
+            BitmapImage bitmap = new BitmapImage(new Uri("ms-appx:///Assets/G_Wi-Fi.bmp"));
+            img.Source = bitmap;
+
+            //btn_wifi.Background = img;
+            
+            btn_wifi.Background = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/G_Wi-Fi.bmp")),
+                Stretch = Stretch.Uniform
+            };
+            
+            // }
         }
     }
 }

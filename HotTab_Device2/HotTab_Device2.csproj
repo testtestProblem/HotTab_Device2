@@ -181,6 +181,9 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\icofont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="HotTab_Device2_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
