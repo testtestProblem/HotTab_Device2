@@ -9,19 +9,25 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="300" Height="300">
 
     <Grid   >
-        <Button x:Name="btn_wifi" Content="&#xec96;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="28,18,0,0"  VerticalAlignment="Top" Click="btn_wifi_Click" Width="45" Height="35" Foreground="#FFE8A006"  >
+        <FlyoutBase.AttachedFlyout>
+            <TimePickerFlyout/>
+        </FlyoutBase.AttachedFlyout>
+        <Button x:Name="btn_wifi" Content="&#xec96;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="28,18,0,0"  VerticalAlignment="Top" Click="btn_wifi_Click" Width="45" Height="35" AutomationProperties.AccessKey="0" AccessKey="1"   >
+            <Button.FocusVisualPrimaryBrush>
+                <AcrylicBrush/>
+            </Button.FocusVisualPrimaryBrush>
 
         </Button>
-        <Button x:Name="btn_gobi3G" Content="WWAN" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="28,58,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="8">
+        <Button x:Name="btn_gobi3G" Content="WWAN" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="28,58,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="8" Click="btn_gobi3G_Click">
 
         </Button>
-        <Button x:Name="btn_GPS" Content="&#x13b57;" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="28,98,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="20">
+        <Button x:Name="btn_GPS" Content="&#x13b57;" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="28,98,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="20" AccessKey="0" Click="btn_GPS_Click">
 
         </Button>
-        <Button x:Name="btn_bluetooth" Content="&#xec42;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="28,138,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="20">
+        <Button x:Name="btn_bluetooth" Content="&#xec42;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="28,138,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="20" Click="btn_bluetooth_Click">
 
         </Button>
-        <Button x:Name="btn_webCamRear" Content="&#xeecf;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="28,178,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="25">
+        <Button x:Name="btn_webCamRear" Content="&#xeecf;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="28,178,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="25" Click="btn_webCamRear_Click">
         </Button>
         <Button x:Name="btn_allLED" Content="&#xec59;" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="28,218,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="21">
         </Button>
@@ -30,10 +36,10 @@
         </Button>
         <Button x:Name="btn_webCamFront" Content="WebCam Front" Margin="148,58,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_RFID" Content="&#x13b1c;" FontFamily="{StaticResource ResourceKey=CustomIconFont}" Margin="148,98,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="25">
-            
+
         </Button>
         <Button x:Name="btn_GPSAntenna" Content="&#xea56;" FontFamily="{StaticResource ResourceKey=CustomIconFont}"  Margin="148,138,0,0" VerticalAlignment="Top" Width="45" Height="35" FontSize="21">
-            
+
         </Button>
         <Button x:Name="btn_expandUSB" Content="Expand USB" Margin="148,178,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_expandCOM" Content="Expand COM" Margin="148,218,0,0" VerticalAlignment="Top"/>

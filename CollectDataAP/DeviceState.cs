@@ -23,7 +23,7 @@ namespace CollectDataAP
 
         private uint? deviceStatePower = null;
 
-        private enum DeviceStatePower : uint
+        public enum DeviceStatePower : uint
         {
             Wifi = 0x01,
             Gobi3G = 0x2,

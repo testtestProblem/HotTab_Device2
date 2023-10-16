@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.AppService;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 
 namespace CollectDataAP
 {
@@ -37,8 +38,9 @@ namespace CollectDataAP
             ValueSet request = new ValueSet();
             request.Add("deviceStateAll", (uint)data);
             //request.Add("D2", (double)2);
-            AppServiceResponse response = await connection.SendMessageAsync(request);
-            string result = (string)response.Message["RESULT"];
+            await connection.SendMessageAsync(request);
+            //AppServiceResponse response = await connection.SendMessageAsync(request);
+            //string result = (string)response.Message["RESULT"];
         }
 
         /// <summary>
@@ -46,8 +48,41 @@ namespace CollectDataAP
         /// </summary>
         private async void Connection_RequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
         {
+            DeviceState deviceState = new DeviceState();
+
             // retrive the reg key name from the ValueSet in the request
-            string key = args.Request.Message["deviceConfig"] as string;
+            uint? key = args.Request.Message["deviceConfig"] as uint?;
+
+            uint state = deviceState.GetDeviceStatePower();
+            try
+            {
+                foreach (uint device in Enum.GetValues(typeof(DeviceState.DeviceStatePower)))
+                {
+                    if ((key & device) == device) 
+                    { 
+                        state = state ^ (uint)key;
+                        deviceState.SetDeviceStatePower(state);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                //TODO - not verify
+                var dialog = new MessageDialog(e.Message);
+                await dialog.ShowAsync();
+            }
+            // compose the response as ValueSet
+            ValueSet response = new ValueSet();
+
+            state = deviceState.GetDeviceStatePower();
+            response.Add("res_deviceConfig", state);
+
+            // send the response back to the UWP
+            await args.Request.SendResponseAsync(response);
+
+
+
+            /*
             if (key == "wifi")
             {
                 // compose the response as ValueSet
@@ -62,7 +97,7 @@ namespace CollectDataAP
                 ValueSet response = new ValueSet();
                 //response.Add("ERROR", "INVALID REQUEST");
                 await args.Request.SendResponseAsync(response);
-            }
+            }*/
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -29,12 +30,11 @@ namespace HotTab_Device2
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        
+
         public MainPage()
         {
-            this.InitializeComponent();
-
-
-
+            this.InitializeComponent(); 
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -47,6 +47,9 @@ namespace HotTab_Device2
                 App.AppServiceDisconnected += MainPage_AppServiceDisconnected;
                 await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
             }
+
+            //HasBeen_Click(0);
+
         }
          
         /// <summary>
@@ -111,46 +114,17 @@ namespace HotTab_Device2
             //{
             //    //tbRequests.Text += string.Format("Request: {0} + {1} --> Response = {2}\r\n", d1, d2, result);
             //});
-            uint deviceState = (uint)args.Request.Message["deviceStateAll"];
+
+            uint deviceStateCode = (uint)args.Request.Message["deviceStateAll"];
+            
 
             //ValueSet response = new ValueSet();
             //response.Add("RESULT", "");
             //await args.Request.SendResponseAsync(response);
 
             await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            { 
-                if ((deviceState & (uint)Modules.Wifi) == (uint)Modules.Wifi)
-                {
-                    btn_wifi.Background = new ImageBrush
-                    {
-                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_3G.bmp", UriKind.RelativeOrAbsolute)),
-                        Stretch = Stretch.Uniform
-                    };
-                }
-                else if ((deviceState & (uint)Modules.Gobi3G) == (uint)Modules.Gobi3G)
-                {
-                    btn_gobi3G.Background = new ImageBrush
-                    {
-                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_3G.bmp", UriKind.RelativeOrAbsolute)),
-                        Stretch = Stretch.Uniform
-                    };
-                }
-                else if ((deviceState & (uint)Modules.GPS) == (uint)Modules.GPS)
-                {
-                    btn_GPS.Background = new ImageBrush
-                    {
-                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_GPS.bmp", UriKind.RelativeOrAbsolute)),
-                        Stretch = Stretch.Uniform
-                    };
-                }
-                else if ((deviceState & (uint)Modules.Bluetooth) == (uint)Modules.Bluetooth)
-                {
-                    btn_bluetooth.Background = new ImageBrush
-                    {
-                        ImageSource = new BitmapImage(new Uri(@"/Assets/device/enable/G_blueTooth.bmp", UriKind.RelativeOrAbsolute)),
-                        Stretch = Stretch.Uniform
-                    };
-                }
+            {
+                CheckDeviceState_Button(deviceStateCode); 
             });
 
             // else btn_wifi.Content = "Wifi " + "disable"; 
@@ -160,31 +134,189 @@ namespace HotTab_Device2
             //await args.Request.SendResponseAsync(response);
         }
 
-        private async void btn_wifi_Click(object sender, RoutedEventArgs e)
+        private void CheckDeviceState_Button(uint deviceState)
+        {
+            if ((deviceState & (uint)Modules.Wifi) == (uint)Modules.Wifi)
+            {
+                btn_wifi.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+            }
+            else 
+            {
+                btn_wifi.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+
+            if ((deviceState & (uint)Modules.Gobi3G) == (uint)Modules.Gobi3G)
+            {
+                btn_gobi3G.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+            }
+            else
+            {
+                btn_gobi3G.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+
+            if ((deviceState & (uint)Modules.GPS) == (uint)Modules.GPS)
+            {
+                btn_GPS.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+            }
+            else
+            {
+                btn_GPS.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+
+            if ((deviceState & (uint)Modules.Bluetooth) == (uint)Modules.Bluetooth)
+            {
+                btn_bluetooth.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+            }
+            else
+            {
+                btn_bluetooth.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+
+            if ((deviceState & (uint)Modules.WebCamRear) == (uint)Modules.WebCamRear)
+            {
+                btn_webCamRear.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+            }
+            else
+            {
+                btn_webCamRear.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+
+            if ((deviceState & (uint)Modules.AllLED) == (uint)Modules.AllLED)
+            {
+                btn_allLED.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+            }
+            else
+            {
+                btn_allLED.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+
+            if ((deviceState & (uint)Modules.Barcode) == (uint)Modules.Barcode)
+            {
+                btn_barcode.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+            }
+            else
+            {
+                btn_barcode.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+
+            if ((deviceState & (uint)Modules.RFID) == (uint)Modules.RFID)
+            {
+                btn_RFID.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+            }
+            else
+            {
+                btn_RFID.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+
+            if ((deviceState & (uint)Modules.GPSAntenna) == (uint)Modules.GPSAntenna)
+            {
+                btn_GPSAntenna.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+            }
+            else
+            {
+                btn_GPSAntenna.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+
+            /*
+            foreach (uint m in Enum.GetValues(typeof(Modules)))
+            {
+                if ((deviceState & m) == (uint)Modules.Wifi)
+                {
+                    btn_wifi.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+                }
+                else if ((deviceState & m) == (uint)Modules.Gobi3G)
+                {
+                    btn_gobi3G.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+                }
+                else if ((deviceState & m) == (uint)Modules.GPS)
+                {
+                    btn_GPS.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+                }
+                else if ((deviceState & m) == (uint)Modules.Bluetooth)
+                {
+                    btn_bluetooth.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+                }
+                else if ((deviceState & m) == (uint)Modules.WebCamRear)
+                {
+                    btn_webCamRear.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+                }
+                else if ((deviceState & m) == (uint)Modules.AllLED)
+                {
+                    btn_allLED.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+                }
+                else if ((deviceState & m) == (uint)Modules.Barcode)
+                {
+                    btn_barcode.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+                }
+                else if ((deviceState & m) == (uint)Modules.RFID)
+                {
+                    btn_RFID.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+                }
+                else if ((deviceState & m) == (uint)Modules.GPSAntenna)
+                {
+                    btn_GPSAntenna.Background = new SolidColorBrush(Windows.UI.Colors.Orange);
+                }
+            }
+            */
+        }
+
+        private async void HasBeen_Click(uint data)
         {
             ValueSet request = new ValueSet();
-            request.Add("deviceConfig", "wifi");
+            request.Add("deviceConfig", data);
             AppServiceResponse response = await App.Connection.SendMessageAsync(request);
+
+            if(response.Message["res_deviceConfig"] as uint? != null)
+            {
+                CheckDeviceState_Button((uint)response.Message["res_deviceConfig"]);
+            }
+        }
+
+        private void btn_wifi_Click(object sender, RoutedEventArgs e)
+        {
+            HasBeen_Click((uint)Modules.Wifi);
+
+
 
             // display the response key/value pairs
             //tbResult.Text = "";
             // foreach (string key in response.Message.Keys)
             // {
-              btn_wifi.Content =  "Wifi " + response.Message["res_wifi"].ToString();
+            //  btn_wifi.Content =  "Wifi " + response.Message["res_wifi"].ToString();
 
-            Image img = new Image();
-            BitmapImage bitmap = new BitmapImage(new Uri("ms-appx:///Assets/G_Wi-Fi.bmp"));
-            img.Source = bitmap;
+            //Image img = new Image();
+            //BitmapImage bitmap = new BitmapImage(new Uri("ms-appx:///Assets/G_Wi-Fi.bmp"));
+            //img.Source = bitmap;
 
             //btn_wifi.Background = img;
-            
-            btn_wifi.Background = new ImageBrush
-            {
-                ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/G_Wi-Fi.bmp")),
-                Stretch = Stretch.Uniform
-            };
-            
+
+            //btn_wifi.Background = new ImageBrush
+            //{
+            //    ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/G_Wi-Fi.bmp")),
+            //    Stretch = Stretch.Uniform
+            //};
+
             // }
+        }
+
+        private void btn_gobi3G_Click(object sender, RoutedEventArgs e)
+        {
+            HasBeen_Click((uint)Modules.Gobi3G);
+        }
+
+        private void btn_GPS_Click(object sender, RoutedEventArgs e)
+        {
+            HasBeen_Click((uint)Modules.GPS);
+        }
+
+        private void btn_bluetooth_Click(object sender, RoutedEventArgs e)
+        {
+            HasBeen_Click((uint)Modules.Bluetooth);
+        }
+
+        private void btn_webCamRear_Click(object sender, RoutedEventArgs e)
+        {
+            HasBeen_Click((uint)Modules.WebCamRear);
         }
     }
 }
